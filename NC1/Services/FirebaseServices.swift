@@ -18,16 +18,39 @@ class FirebaseServices {
         self.ref.child("users").child(defaults.string(forKey: "userId")!).setValue(["username": "test"])
     }
     
-    func pairUserWithPartnerId(partnerId: String) {
-        ref.child("users").child(currentUserId).updateChildValues(["partnerId": partnerId])
+    func pairUserWithPartnerId(partnerId: String) async {
+        defaults.setValue(partnerId, forKey: "partnerId")
         
-        ref.child("users").child(partnerId).updateChildValues(["partnerId": currentUserId])
+        do {
+            try await ref.child("users").child(currentUserId).updateChildValues(["partnerId": partnerId])
+            try await ref.child("users").child(partnerId).updateChildValues(["partnerId": currentUserId])
+            
+            let partnerPushNotifToken = await self.getPartnerPushNotifToken(partnerId: partnerId)
+            let currentUserPushNotifToken = await self.getPartnerPushNotifToken(partnerId: currentUserId)
+            
+            try await ref.child("users").child(currentUserId).updateChildValues(["partnerPushNotifToken": partnerPushNotifToken])
+            try await ref.child("users").child(partnerId).updateChildValues(["partnerPushNotifToken": currentUserPushNotifToken])
+        } catch {
+            print(error)
+        }
+    }
+    
+    func updateUserHRV(hrv: Int) async {
+        do {
+            try await ref.child("users").child(currentUserId).updateChildValues(["hrv": hrv])
+        } catch {
+            print(error)
+        }
     }
     
     func getPartnerPushNotifToken (partnerId: String) async -> String {
-        var snapshot = try? await ref.child("users/\(partnerId)/pushNotificationToken").getData()
+        let snapshot = try? await ref.child("users/\(partnerId)/pushNotificationToken").getData()
         
-        var notifToken = snapshot?.value as! String
+        if snapshot == nil {
+            return ""
+        }
+        
+        let notifToken = snapshot?.value as! String
         
         return notifToken
     }
