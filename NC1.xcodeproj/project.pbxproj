@@ -27,6 +27,9 @@
 		E41C2C8B2BDF809D00C7595D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C8A2BDF809D00C7595D /* HomeScreen.swift */; };
 		E41C2C8D2BDF94CD00C7595D /* StressLevelBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C8C2BDF94CD00C7595D /* StressLevelBackground.swift */; };
 		E41C2C8F2BDFAD9B00C7595D /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C8E2BDFAD9B00C7595D /* HealthManager.swift */; };
+		E4AAFBAB2BE008F60098A8C2 /* Beat1st.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4AAFBA82BE008F60098A8C2 /* Beat1st.wav */; };
+		E4AAFBAC2BE008F60098A8C2 /* Beat2nd.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4AAFBA92BE008F60098A8C2 /* Beat2nd.wav */; };
+		E4AAFBAE2BE009250098A8C2 /* HeartBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AAFBAD2BE009250098A8C2 /* HeartBeat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		E41C2C8A2BDF809D00C7595D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		E41C2C8C2BDF94CD00C7595D /* StressLevelBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressLevelBackground.swift; sourceTree = "<group>"; };
 		E41C2C8E2BDFAD9B00C7595D /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		E4AAFBA82BE008F60098A8C2 /* Beat1st.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beat1st.wav; sourceTree = "<group>"; };
+		E4AAFBA92BE008F60098A8C2 /* Beat2nd.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beat2nd.wav; sourceTree = "<group>"; };
+		E4AAFBAD2BE009250098A8C2 /* HeartBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartBeat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		E41C2C542BDB725D00C7595D /* NC1 */ = {
 			isa = PBXGroup;
 			children = (
+				E4AAFBAA2BE008F60098A8C2 /* Audio-File */,
 				E41C2C812BDF7E4A00C7595D /* Views */,
 				E41C2C792BDB96F400C7595D /* Controllers */,
 				E41C2C742BDB8ECE00C7595D /* Screens */,
@@ -139,11 +146,21 @@
 		E41C2C812BDF7E4A00C7595D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4AAFBAD2BE009250098A8C2 /* HeartBeat.swift */,
 				E41C2C842BDF7E6200C7595D /* Background.swift */,
 				E41C2C832BDF7E6200C7595D /* WaveAnimation.swift */,
 				E41C2C8C2BDF94CD00C7595D /* StressLevelBackground.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E4AAFBAA2BE008F60098A8C2 /* Audio-File */ = {
+			isa = PBXGroup;
+			children = (
+				E4AAFBA82BE008F60098A8C2 /* Beat1st.wav */,
+				E4AAFBA92BE008F60098A8C2 /* Beat2nd.wav */,
+			);
+			path = "Audio-File";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,9 +233,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AAFBAC2BE008F60098A8C2 /* Beat2nd.wav in Resources */,
 				E41C2C5E2BDB725E00C7595D /* Preview Assets.xcassets in Resources */,
 				E41C2C5A2BDB725E00C7595D /* Assets.xcassets in Resources */,
 				E41C2C652BDB72E800C7595D /* GoogleService-Info.plist in Resources */,
+				E4AAFBAB2BE008F60098A8C2 /* Beat1st.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +259,7 @@
 				E41C2C8B2BDF809D00C7595D /* HomeScreen.swift in Sources */,
 				E41C2C782BDB96DE00C7595D /* QRScanScreenView.swift in Sources */,
 				E41C2C852BDF7E6200C7595D /* CoupleScreenView.swift in Sources */,
+				E4AAFBAE2BE009250098A8C2 /* HeartBeat.swift in Sources */,
 				E41C2C762BDB8EE700C7595D /* QRScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +395,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NC1/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = uwu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to pair with your partner";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your heart rate is used to detect your stress levels";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your heart rate is used to detect your stress levels";
@@ -417,6 +439,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NC1/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = uwu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to pair with your partner";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your heart rate is used to detect your stress levels";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your heart rate is used to detect your stress levels";

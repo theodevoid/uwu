@@ -60,29 +60,12 @@ class HealthManager: ObservableObject {
             
             DispatchQueue.main.async {
                 if !results.isEmpty {
-                    ///TODO: DEV PURPOSES ONLY, REMOVE - 20
-                    self.hrv = Int(results.first!.quantity.doubleValue(for: .secondUnit(with: .milli))) - 20
+                    self.hrv = Int(results.first!.quantity.doubleValue(for: .secondUnit(with: .milli)))
                 }
             }
         } catch {
             print("error fetching HRV", error)
         }
-        
-        
-        
-        
-//        let startDate = Date() - 1 * 1 * 5 * 60
-//        let predicate: NSPredicate? = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: HKQueryOptions.strictEndDate)
-//        let squery = HKStatisticsQuery(quantityType: typeHeart!, quantitySamplePredicate: predicate, options: .discreteAverage, completionHandler: {(query: HKStatisticsQuery,result: HKStatistics?, error: Error?) -> Void in
-//            DispatchQueue.main.async(execute: {() -> Void in
-//                let quantity: HKQuantity? = result?.averageQuantity()
-//                let beats: Double? = quantity?.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
-//                
-//                self.bpm = beats
-//                print("got: \(beats)")
-//            })
-//        })
-//        healthStore.execute(squery)
     }
     
     func fetchHeartRate() async {

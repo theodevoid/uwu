@@ -50,8 +50,18 @@ struct CoupleScreenView: View {
         let userId = defaults.string(forKey: "userId")
         
         if partnerId != nil {
-            ref.child("user").child(partnerId!).child("heartRate").observe(DataEventType.value, with: { snapshot in
-                print(snapshot.value)
+            ref.child("users").child(partnerId!).child("heartRate").observe(DataEventType.value, with: { snapshot in
+                print("LISTEN PARTNER HR", snapshot.value as Any)
+                partnerHeartRate = Int(snapshot.value as? Double ?? 0)
+            })
+            
+            ref.child("users").child(partnerId!).child("hrv").observe(DataEventType.value, with: { snapshot in
+                print("LISTEN PARTNER HRV", snapshot.value as Any)
+                partnerHRV = Int(snapshot.value as? Double ?? 0)
+                
+                withAnimation(.easeIn) {
+                    partnerStressLevel = healthManager.determineStressLevel(hrv: Int(snapshot.value as? Double ?? 0))
+                }
             })
         }
     }
@@ -69,40 +79,24 @@ struct CoupleScreenView: View {
                         
                         Image(.dog).resizable().frame(width: 106.33, height: 80)
                         
-//                        Image(systemName: "heart.fill")
-//                            .font(.system(size: 34))
-//                            .foregroundColor(Color.red)
-//                            .offset(x:-50, y:65)
-                        
                         HeartBeat(bpm: Double(healthManager.heartRate))
                             .offset(x:-50, y:65)
                         
                     }.offset(CGSize(width: -75, height: 0))
                     
-                    ZStack {
-                        StressLevelBackground(userStressLevel: $partnerStressLevel)
-                        
-                        Image(.cat).resizable().frame(width: 64.35, height: 80)
-                        
-//                        Image(systemName: "heart.fill")
-//                            .font(.system(size: 34))
-//                            .foregroundColor(Color.red)
-//                            .offset(x:50, y:65)
-                        
-                        HeartBeat(bpm: Double(healthManager.heartRate))
-                            .offset(x:50, y:65)
-                        
-                    }.offset(CGSize(width: 75.0, height: 0))
-                    
-                    Spacer()
-                    
-                    
-                    Button {
-                        detectUserStressLevel()
-                    } label: {
-                        Text("Change stress level \(healthManager.heartRate)")
+                    if defaults.string(forKey: "partnerId") != nil {
+                        ZStack {
+                            StressLevelBackground(userStressLevel: $partnerStressLevel)
+                            
+                            Image(.cat).resizable().frame(width: 64.35, height: 80)
+                            
+                            HeartBeat(bpm: Double(partnerHeartRate))
+                                .offset(x:50, y:65)
+                            
+                        }.offset(CGSize(width: 75.0, height: 0))
                     }
                     
+                    Spacer()
                     
                     NavigationLink(destination: QRScreenView(), label: {
                         Image(systemName: "person.badge.plus").frame(width: 70, height: 30)
@@ -125,15 +119,30 @@ struct CoupleScreenView: View {
                     .ignoresSafeArea()
             }
             .onAppear {
+                listenPartnerHeartRateAndHRV()
+                
+                Task {
+                    await healthManager.fetchHeartRateVariability()
+                    await healthManager.fetchHeartRate()
+                    await firebaseService.updateUserHeartRateAndHRV(heartRate: healthManager.heartRate, hrv: healthManager.hrv ?? 0)
+                    
+                    DispatchQueue.main.async {
+                        withAnimation(.easeIn) {
+                            userStressLevel = healthManager.determineStressLevel(hrv: healthManager.hrv ?? 0)
+                        }
+                    }
+                }
+                
                 Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
                     Task {
                         await healthManager.fetchHeartRateVariability()
                         await healthManager.fetchHeartRate()
                         await firebaseService.updateUserHeartRateAndHRV(heartRate: healthManager.heartRate, hrv: healthManager.hrv ?? 0)
-                        listenPartnerHeartRateAndHRV()
                         
                         DispatchQueue.main.async {
-                            userStressLevel = healthManager.determineStressLevel(hrv: healthManager.hrv ?? 0)
+                            withAnimation(.easeIn) {
+                                userStressLevel = healthManager.determineStressLevel(hrv: healthManager.hrv ?? 0)
+                            }
                         }
                     }
                 })

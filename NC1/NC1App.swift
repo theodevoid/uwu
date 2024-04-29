@@ -58,6 +58,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("DEVICE TOKEN", deviceToken)
         Messaging.messaging().apnsToken = deviceToken
         
         Messaging.messaging().token { token, error in
@@ -70,6 +71,20 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         }
     }
 
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async
+      -> UIBackgroundFetchResult {
+      // If you are receiving a notification message while your app is in the background,
+      // this callback will not be fired till the user taps on the notification launching the application.
+      
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+       Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // Print full message.
+      print(userInfo)
+
+      return UIBackgroundFetchResult.newData
+    }
 }
 
 @main

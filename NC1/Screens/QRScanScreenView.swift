@@ -77,15 +77,6 @@ struct QRScanScreenView: View {
                                     .rotationEffect(Angle(degrees: -135))
                             }
                         }
-                        //                    CodeScannerView(codeTypes: [.qr], completion: handleScan)
-                        //                        .fill(Color("PastelDarkPurple"))
-                        //                        .aspectRatio(contentMode: .fit)
-                        //                        .frame(width: 165, height: 165)
-                        Rectangle()
-                            .fill(Color.black)
-                            .frame(width: 210, height: 210)
-                            .compositingGroup()
-                            .luminanceToAlpha()
                     }
                     .frame(width: 230, height: 230)
                 }
