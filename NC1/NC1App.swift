@@ -8,13 +8,17 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseMessaging
+import FirebaseDatabase
 
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     var defaults = UserDefaults.standard
+    var ref:DatabaseReference? = nil
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        
+        ref = Database.database(url: "https://ada-nc1-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
         
         // set user's random UUID to pair with partner
         if defaults.object(forKey: "userId") == nil {
@@ -52,9 +56,18 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
       // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Registered for Apple Remote Notifications")
-        Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print("Error fetching FCM registration token: \(error)")
+            } else if let token = token {
+                print("FCM registration token: \(token)")
+                self.ref?.child("users").child(self.defaults.string(forKey: "userId")!).updateChildValues(["pushNotificationToken": token])
+            }
+        }
     }
 
 }
@@ -62,10 +75,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 @main
 struct NC1App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var healthManager = HealthManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(healthManager)
                 .preferredColorScheme(.light)
         }
     }
