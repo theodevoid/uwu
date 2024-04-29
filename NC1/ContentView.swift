@@ -24,8 +24,6 @@ struct ContentView: View {
                 self.ref.child("users").child(defaults.string(forKey: "userId")!).updateChildValues(["pushNotificationToken": token])
             }
         }
-        
-        self.ref.child("users").child(defaults.string(forKey: "userId")!).setValue(["username": "test"])
     }
     
     var body: some View {

@@ -34,6 +34,9 @@ struct CoupleScreenView: View {
     @State private var userStressLevel: StressLevel = .low
     @State private var partnerStressLevel: StressLevel = .low
     
+    @State private var partnerHeartRate = 0
+    @State private var partnerHRV = 0
+    
     @EnvironmentObject var healthManager: HealthManager
     
     func detectUserStressLevel() {
@@ -42,16 +45,16 @@ struct CoupleScreenView: View {
         }
     }
     
-//    func listenPartnerHRV() {
-//        let partnerId = defaults.string(forKey: "partnerId")
-//        let userId = defaults.string(forKey: "userId")
-//        
-//        if partnerId != nil {
-//            ref.child("user").child(partnerId!).child("hrv").observe(DataEventType.value, with: { snapshot in
-//                print(snapshot.value)
-//            })
-//        }
-//    }
+    func listenPartnerHeartRateAndHRV() {
+        let partnerId = defaults.string(forKey: "partnerId")
+        let userId = defaults.string(forKey: "userId")
+        
+        if partnerId != nil {
+            ref.child("user").child(partnerId!).child("heartRate").observe(DataEventType.value, with: { snapshot in
+                print(snapshot.value)
+            })
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -126,7 +129,8 @@ struct CoupleScreenView: View {
                     Task {
                         await healthManager.fetchHeartRateVariability()
                         await healthManager.fetchHeartRate()
-                        await firebaseService.updateUserHRV(hrv: healthManager.hrv ?? 0)
+                        await firebaseService.updateUserHeartRateAndHRV(heartRate: healthManager.heartRate, hrv: healthManager.hrv ?? 0)
+                        listenPartnerHeartRateAndHRV()
                         
                         DispatchQueue.main.async {
                             userStressLevel = healthManager.determineStressLevel(hrv: healthManager.hrv ?? 0)

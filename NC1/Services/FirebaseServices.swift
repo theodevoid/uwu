@@ -35,9 +35,10 @@ class FirebaseServices {
         }
     }
     
-    func updateUserHRV(hrv: Int) async {
+    func updateUserHeartRateAndHRV(heartRate: Int, hrv: Int) async {
         do {
             try await ref.child("users").child(currentUserId).updateChildValues(["hrv": hrv])
+            try await ref.child("users").child(currentUserId).updateChildValues(["heartRate": heartRate])
         } catch {
             print(error)
         }

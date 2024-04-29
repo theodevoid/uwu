@@ -90,35 +90,19 @@ class HealthManager: ObservableObject {
         let descriptor = HKSampleQueryDescriptor(
             predicates:[.quantitySample(type: typeHeart)],
             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
-            limit: 1)
+            limit: 10)
         
         do {
             let results = try await descriptor.result(for: healthStore)
             
             DispatchQueue.main.async {
                 if !results.isEmpty {
-                    ///TODO: DEV PURPOSES ONLY, REMOVE - 20
-                    self.heartRate = Int(results.first!.quantity.doubleValue(for: .count().unitDivided(by: .minute()))) - 20
+//                    print(results)
+                    self.heartRate = Int(results.first!.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute())))
                 }
             }
         } catch {
-            print("error fetching HRV", error)
+            print("error fetching Heart Rate", error)
         }
-        
-        
-        
-        
-//        let startDate = Date() - 1 * 1 * 5 * 60
-//        let predicate: NSPredicate? = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: HKQueryOptions.strictEndDate)
-//        let squery = HKStatisticsQuery(quantityType: typeHeart!, quantitySamplePredicate: predicate, options: .discreteAverage, completionHandler: {(query: HKStatisticsQuery,result: HKStatistics?, error: Error?) -> Void in
-//            DispatchQueue.main.async(execute: {() -> Void in
-//                let quantity: HKQuantity? = result?.averageQuantity()
-//                let beats: Double? = quantity?.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
-//
-//                self.bpm = beats
-//                print("got: \(beats)")
-//            })
-//        })
-//        healthStore.execute(squery)
     }
 }
