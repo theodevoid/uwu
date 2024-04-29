@@ -11,6 +11,20 @@
 		E41C2C582BDB725D00C7595D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C572BDB725D00C7595D /* ContentView.swift */; };
 		E41C2C5A2BDB725E00C7595D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41C2C592BDB725E00C7595D /* Assets.xcassets */; };
 		E41C2C5E2BDB725E00C7595D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41C2C5D2BDB725E00C7595D /* Preview Assets.xcassets */; };
+		E41C2C652BDB72E800C7595D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E41C2C642BDB72E800C7595D /* GoogleService-Info.plist */; };
+		E41C2C682BDB735B00C7595D /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = E41C2C672BDB735B00C7595D /* FirebaseAppCheck */; };
+		E41C2C6A2BDB76E700C7595D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E41C2C692BDB76E700C7595D /* FirebaseDatabase */; };
+		E41C2C6C2BDB76E700C7595D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E41C2C6B2BDB76E700C7595D /* FirebaseMessaging */; };
+		E41C2C702BDB8AD500C7595D /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C6F2BDB8AD500C7595D /* FirebaseServices.swift */; };
+		E41C2C732BDB8D0B00C7595D /* QRCode in Frameworks */ = {isa = PBXBuildFile; productRef = E41C2C722BDB8D0B00C7595D /* QRCode */; };
+		E41C2C762BDB8EE700C7595D /* QRScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C752BDB8EE700C7595D /* QRScreenView.swift */; };
+		E41C2C782BDB96DE00C7595D /* QRScanScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C772BDB96DE00C7595D /* QRScanScreenView.swift */; };
+		E41C2C7B2BDB970200C7595D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C7A2BDB970200C7595D /* ScannerViewController.swift */; };
+		E41C2C802BDB9C9B00C7595D /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = E41C2C7F2BDB9C9B00C7595D /* CodeScanner */; };
+		E41C2C852BDF7E6200C7595D /* CoupleScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C822BDF7E6200C7595D /* CoupleScreenView.swift */; };
+		E41C2C862BDF7E6200C7595D /* WaveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C832BDF7E6200C7595D /* WaveAnimation.swift */; };
+		E41C2C872BDF7E6200C7595D /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C842BDF7E6200C7595D /* Background.swift */; };
+		E41C2C8B2BDF809D00C7595D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41C2C8A2BDF809D00C7595D /* HomeScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +34,16 @@
 		E41C2C592BDB725E00C7595D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E41C2C5B2BDB725E00C7595D /* NC1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NC1.entitlements; sourceTree = "<group>"; };
 		E41C2C5D2BDB725E00C7595D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E41C2C642BDB72E800C7595D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E41C2C6D2BDB7F8700C7595D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E41C2C6F2BDB8AD500C7595D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
+		E41C2C752BDB8EE700C7595D /* QRScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScreenView.swift; sourceTree = "<group>"; };
+		E41C2C772BDB96DE00C7595D /* QRScanScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanScreenView.swift; sourceTree = "<group>"; };
+		E41C2C7A2BDB970200C7595D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		E41C2C822BDF7E6200C7595D /* CoupleScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoupleScreenView.swift; sourceTree = "<group>"; };
+		E41C2C832BDF7E6200C7595D /* WaveAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveAnimation.swift; sourceTree = "<group>"; };
+		E41C2C842BDF7E6200C7595D /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		E41C2C8A2BDF809D00C7595D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +51,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E41C2C732BDB8D0B00C7595D /* QRCode in Frameworks */,
+				E41C2C802BDB9C9B00C7595D /* CodeScanner in Frameworks */,
+				E41C2C6C2BDB76E700C7595D /* FirebaseMessaging in Frameworks */,
+				E41C2C6A2BDB76E700C7595D /* FirebaseDatabase in Frameworks */,
+				E41C2C682BDB735B00C7595D /* FirebaseAppCheck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +81,12 @@
 		E41C2C542BDB725D00C7595D /* NC1 */ = {
 			isa = PBXGroup;
 			children = (
+				E41C2C812BDF7E4A00C7595D /* Views */,
+				E41C2C792BDB96F400C7595D /* Controllers */,
+				E41C2C742BDB8ECE00C7595D /* Screens */,
+				E41C2C6E2BDB8AC900C7595D /* Services */,
+				E41C2C6D2BDB7F8700C7595D /* Info.plist */,
+				E41C2C642BDB72E800C7595D /* GoogleService-Info.plist */,
 				E41C2C552BDB725D00C7595D /* NC1App.swift */,
 				E41C2C572BDB725D00C7595D /* ContentView.swift */,
 				E41C2C592BDB725E00C7595D /* Assets.xcassets */,
@@ -67,6 +102,42 @@
 				E41C2C5D2BDB725E00C7595D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E41C2C6E2BDB8AC900C7595D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E41C2C6F2BDB8AD500C7595D /* FirebaseServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E41C2C742BDB8ECE00C7595D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E41C2C822BDF7E6200C7595D /* CoupleScreenView.swift */,
+				E41C2C752BDB8EE700C7595D /* QRScreenView.swift */,
+				E41C2C8A2BDF809D00C7595D /* HomeScreen.swift */,
+				E41C2C772BDB96DE00C7595D /* QRScanScreenView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E41C2C792BDB96F400C7595D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E41C2C7A2BDB970200C7595D /* ScannerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E41C2C812BDF7E4A00C7595D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E41C2C842BDF7E6200C7595D /* Background.swift */,
+				E41C2C832BDF7E6200C7595D /* WaveAnimation.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +156,13 @@
 			dependencies = (
 			);
 			name = NC1;
+			packageProductDependencies = (
+				E41C2C672BDB735B00C7595D /* FirebaseAppCheck */,
+				E41C2C692BDB76E700C7595D /* FirebaseDatabase */,
+				E41C2C6B2BDB76E700C7595D /* FirebaseMessaging */,
+				E41C2C722BDB8D0B00C7595D /* QRCode */,
+				E41C2C7F2BDB9C9B00C7595D /* CodeScanner */,
+			);
 			productName = NC1;
 			productReference = E41C2C522BDB725D00C7595D /* NC1.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +191,11 @@
 				Base,
 			);
 			mainGroup = E41C2C492BDB725D00C7595D;
+			packageReferences = (
+				E41C2C662BDB735B00C7595D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E41C2C712BDB8D0A00C7595D /* XCRemoteSwiftPackageReference "qrcode" */,
+				E41C2C7E2BDB9C9B00C7595D /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = E41C2C532BDB725D00C7595D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -129,6 +212,7 @@
 			files = (
 				E41C2C5E2BDB725E00C7595D /* Preview Assets.xcassets in Resources */,
 				E41C2C5A2BDB725E00C7595D /* Assets.xcassets in Resources */,
+				E41C2C652BDB72E800C7595D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +224,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41C2C582BDB725D00C7595D /* ContentView.swift in Sources */,
+				E41C2C862BDF7E6200C7595D /* WaveAnimation.swift in Sources */,
+				E41C2C7B2BDB970200C7595D /* ScannerViewController.swift in Sources */,
 				E41C2C562BDB725D00C7595D /* NC1App.swift in Sources */,
+				E41C2C702BDB8AD500C7595D /* FirebaseServices.swift in Sources */,
+				E41C2C872BDF7E6200C7595D /* Background.swift in Sources */,
+				E41C2C8B2BDF809D00C7595D /* HomeScreen.swift in Sources */,
+				E41C2C782BDB96DE00C7595D /* QRScanScreenView.swift in Sources */,
+				E41C2C852BDF7E6200C7595D /* CoupleScreenView.swift in Sources */,
+				E41C2C762BDB8EE700C7595D /* QRScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +366,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NC1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to scan your partner's QR code";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -282,13 +376,13 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voidfnc.NC1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -312,6 +406,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NC1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to scan your partner's QR code";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -320,13 +416,13 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voidfnc.NC1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -359,6 +455,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E41C2C662BDB735B00C7595D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
+		E41C2C712BDB8D0A00C7595D /* XCRemoteSwiftPackageReference "qrcode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dagronf/qrcode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.6.0;
+			};
+		};
+		E41C2C7E2BDB9C9B00C7595D /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E41C2C672BDB735B00C7595D /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41C2C662BDB735B00C7595D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		E41C2C692BDB76E700C7595D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41C2C662BDB735B00C7595D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		E41C2C6B2BDB76E700C7595D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41C2C662BDB735B00C7595D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		E41C2C722BDB8D0B00C7595D /* QRCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41C2C712BDB8D0A00C7595D /* XCRemoteSwiftPackageReference "qrcode" */;
+			productName = QRCode;
+		};
+		E41C2C7F2BDB9C9B00C7595D /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41C2C7E2BDB9C9B00C7595D /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E41C2C4A2BDB725D00C7595D /* Project object */;
 }
