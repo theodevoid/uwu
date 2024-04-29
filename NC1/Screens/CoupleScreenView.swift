@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HealthKit
+import FirebaseDatabase
 
 enum StressLevel {
     case low
@@ -15,6 +16,10 @@ enum StressLevel {
 }
 
 struct CoupleScreenView: View {
+    var defaults = UserDefaults.standard
+    
+    var ref = Database.database(url: "https://ada-nc1-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+    
     var low = [Color("DarkGreen"), Color("LightGreen")]
     var medium = [Color("DarkYellow"), Color("LightYellow")]
     var high = [Color("DarkRed"), Color("LightRed")]
@@ -22,6 +27,7 @@ struct CoupleScreenView: View {
     var timer = Timer()
     
     private var healthStore = HKHealthStore()
+    private var firebaseService = FirebaseServices()
     let heartRateQuantity = HKUnit(from: "count/min")
         
     @State private var value = 0
@@ -35,6 +41,17 @@ struct CoupleScreenView: View {
             userStressLevel = .high
         }
     }
+    
+//    func listenPartnerHRV() {
+//        let partnerId = defaults.string(forKey: "partnerId")
+//        let userId = defaults.string(forKey: "userId")
+//        
+//        if partnerId != nil {
+//            ref.child("user").child(partnerId!).child("hrv").observe(DataEventType.value, with: { snapshot in
+//                print(snapshot.value)
+//            })
+//        }
+//    }
     
     var body: some View {
         NavigationStack {
@@ -82,7 +99,7 @@ struct CoupleScreenView: View {
                     Button {
                         detectUserStressLevel()
                     } label: {
-                        Text("Change stress level \(healthManager.hrv)")
+                        Text("Change stress level \(healthManager.heartRate)")
                     }
                     
                     
@@ -109,7 +126,9 @@ struct CoupleScreenView: View {
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
                     Task {
+                        await healthManager.fetchHeartRateVariability()
                         await healthManager.fetchHeartRate()
+                        await firebaseService.updateUserHRV(hrv: healthManager.hrv ?? 0)
                         
                         DispatchQueue.main.async {
                             userStressLevel = healthManager.determineStressLevel(hrv: healthManager.hrv ?? 0)

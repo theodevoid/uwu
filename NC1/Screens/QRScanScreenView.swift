@@ -18,12 +18,16 @@ func HoleShapeMask(in rect: CGRect) -> Path {
 struct QRScanScreenView: View {
     @Binding var isShowingScanner: Bool
     
+    var firebaseService = FirebaseServices()
+    
     func handleScan(result: Result<ScanResult, ScanError>) {
         isShowingScanner = false
         // more code to come
         switch result {
         case .success(let result):
-            print(result.string)
+            Task {
+                await firebaseService.pairUserWithPartnerId(partnerId: result.string)
+            }
         case .failure(_):
             print("failed")
         }
