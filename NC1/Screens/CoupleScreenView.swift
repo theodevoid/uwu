@@ -89,7 +89,7 @@ struct CoupleScreenView: View {
                     Button {
                         detectUserStressLevel()
                     } label: {
-                        Text("Change stress level \(healthManager.hrv)")
+                        Text("Change stress level \(healthManager.heartRate)")
                     }
                     
                     
@@ -116,6 +116,7 @@ struct CoupleScreenView: View {
             .onAppear {
                 Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
                     Task {
+                        await healthManager.fetchHeartRateVariability()
                         await healthManager.fetchHeartRate()
                         await firebaseService.updateUserHRV(hrv: healthManager.hrv ?? 0)
                         
