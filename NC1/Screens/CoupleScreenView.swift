@@ -49,10 +49,15 @@ struct CoupleScreenView: View {
                         
                         Image(.dog).resizable().frame(width: 106.33, height: 80)
                         
-                        Image(systemName: "heart.fill")
-                            .font(.system(size: 34))
-                            .foregroundColor(Color.red)
+//                        Image(systemName: "heart.fill")
+//                            .font(.system(size: 34))
+//                            .foregroundColor(Color.red)
+//                            .offset(x:-50, y:65)
+                        
+                        // TO DO: Change 60.0 to heartrate variable
+                        HeartBeat(bpm: 60.0)
                             .offset(x:-50, y:65)
+                        
                     }.offset(CGSize(width: -75, height: 0))
                     
                     ZStack {
@@ -60,10 +65,15 @@ struct CoupleScreenView: View {
                         
                         Image(.cat).resizable().frame(width: 64.35, height: 80)
                         
-                        Image(systemName: "heart.fill")
-                            .font(.system(size: 34))
-                            .foregroundColor(Color.red)
+//                        Image(systemName: "heart.fill")
+//                            .font(.system(size: 34))
+//                            .foregroundColor(Color.red)
+//                            .offset(x:50, y:65)
+                        
+                        // TO DO: Change 60.0 to heartrate variable
+                        HeartBeat(bpm: 60.0)
                             .offset(x:50, y:65)
+                        
                     }.offset(CGSize(width: 75.0, height: 0))
                     
                     Spacer()
