@@ -86,7 +86,7 @@ struct CoupleScreenView: View {
 //                            .foregroundColor(Color.red)
 //                            .offset(x:50, y:65)
                         
-                        HeartBeat(bpm: Double(healthManager.heartRate)
+                        HeartBeat(bpm: Double(healthManager.heartRate))
                             .offset(x:50, y:65)
                         
                     }.offset(CGSize(width: 75.0, height: 0))
