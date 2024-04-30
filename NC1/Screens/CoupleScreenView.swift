@@ -39,6 +39,9 @@ struct CoupleScreenView: View {
     
     @EnvironmentObject var healthManager: HealthManager
     
+    @State private var userAnimateGradient = false
+    @State private var partnerAnimateGradient = false
+    
     func detectUserStressLevel() {
         withAnimation(.easeIn) {
             userStressLevel = .high
@@ -64,6 +67,17 @@ struct CoupleScreenView: View {
                 }
             })
         }
+        
+        if userId != nil {
+            ref.child("users").child(userId!).child("hrv").observe(DataEventType.value, with: { snapshot in
+                print("LISTEN USER HRV", snapshot.value as Any)
+                partnerHRV = Int(snapshot.value as? Double ?? 0)
+                
+                withAnimation(.easeIn) {
+                    userStressLevel = healthManager.determineStressLevel(hrv: Int(snapshot.value as? Double ?? 0))
+                }
+            })
+        }
     }
     
     var body: some View {
@@ -75,7 +89,17 @@ struct CoupleScreenView: View {
                     Spacer()
                     
                     ZStack {
-                        StressLevelBackground(userStressLevel: $userStressLevel)
+                        StressLevelBackground(userStressLevel: $userStressLevel, animateGradient: $userAnimateGradient)
+                            .onAppear {
+                                withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+                                    userAnimateGradient.toggle()
+                                }
+                            }
+                            .onChange(of: userStressLevel, {
+                                withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+                                    userAnimateGradient.toggle()
+                                }
+                            })
                         
                         Image(.dog).resizable().frame(width: 106.33, height: 80)
                         
@@ -86,7 +110,17 @@ struct CoupleScreenView: View {
                     
                     if defaults.string(forKey: "partnerId") != nil {
                         ZStack {
-                            StressLevelBackground(userStressLevel: $partnerStressLevel)
+                            StressLevelBackground(userStressLevel: $partnerStressLevel, animateGradient: $partnerAnimateGradient)
+                                .onAppear {
+                                    withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+                                        partnerAnimateGradient.toggle()
+                                    }
+                                }
+                                .onChange(of: partnerStressLevel, {
+                                    withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
+                                        partnerAnimateGradient.toggle()
+                                    }
+                                })
                             
                             Image(.cat).resizable().frame(width: 64.35, height: 80)
                             

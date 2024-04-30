@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StressLevelBackground: View {
     @Binding var userStressLevel: StressLevel
+    @Binding var animateGradient: Bool
     
     var body: some View {
         if userStressLevel == .low {
@@ -18,7 +19,7 @@ struct StressLevelBackground: View {
                 )
                 .frame(width: 300, height: 150)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                .transition(.opacity)
+                .rotationEffect(.degrees(animateGradient ? 360 : 0))
         } else if userStressLevel == .medium {
             Circle()
                 .fill(
@@ -26,7 +27,7 @@ struct StressLevelBackground: View {
                 )
                 .frame(width: 300, height: 150)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                .transition(.opacity)
+                .rotationEffect(.degrees(animateGradient ? 360 : 0))
         } else if userStressLevel == .high {
             Circle()
                 .fill(
@@ -34,7 +35,7 @@ struct StressLevelBackground: View {
                 )
                 .frame(width: 300, height: 150)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                .transition(.opacity)
+                .rotationEffect(.degrees(animateGradient ? 360 : 0))
         }
     }
 }
