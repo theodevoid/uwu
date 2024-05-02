@@ -11,8 +11,8 @@ import AVFoundation
 
 struct HeartBeat: View {
     var bpm: Double = 60.0
+    
     @State var beating = false
-//    @State var complete = false
     @State var hapticsBeat = false
     
     @State var engineRestart = false
@@ -20,39 +20,45 @@ struct HeartBeat: View {
     @State var player: CHHapticAdvancedPatternPlayer?
     
     @State var timer: Timer?
-    @State var starting: Bool = true
     
     var body: some View {
-        Image(systemName: "heart.fill")
-            .font(.system(size: 34))
-            .foregroundColor(.red)
-            .scaleEffect(beating ? 1.25 : 1)
-            .padding(75)
-            .onLongPressGesture(minimumDuration: .infinity) { onHold in
-                if onHold {
-                    hapticsBeat = true
-                } else {
-                    hapticsBeat = false
-                }
-                if hapticsBeat {
-                    stopHeart()
-                    runHeartAnimation()
-                    runBeat()
-                } else {
-                    stopBeat()
-                }
-                    
-            } perform: {
-//                complete = true
-            }
-            .onAppear(perform: runHeartAnimation)
-            .onChange(of: bpm) {
+        ZStack {
+            Circle()
+                .foregroundColor(.clear)
+                .frame(width: 150, height: 150)
+                .padding(25)
+            
+            Image(systemName: "heart.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(.pink)
+                .frame(width: 75)
+                .scaleEffect(beating ? 1.25 : 1)
+                .offset(CGSize(width: 55.0, height: 55.0))
+                .padding()
+                .onAppear(perform: runHeartAnimation)
+        }
+        .contentShape(Circle())
+        .onLongPressGesture(minimumDuration: .infinity, maximumDistance: 300) { onHold in
+            if onHold {
                 stopHeart()
-                stopBeat()
                 runHeartAnimation()
                 runBeat()
+            } else {
+                stopBeat()
             }
+        } perform: {}
+        .onChange(of: bpm) {
+            stopHeart()
+            runHeartAnimation()
+            
+            if hapticsBeat {
+                stopBeat()
+                runBeat()
+            }
+        }
     }
+    
     
     func calculateBeat() -> Double {
         return 60/(bpm*3)
@@ -122,11 +128,14 @@ struct HeartBeat: View {
         
         do {
             let pattern = try CHHapticPattern(events: events, parameters: [])
-            player = try engine?.makeAdvancedPlayer(with: pattern)
-            if hapticsBeat {
+            
+            if !hapticsBeat {
+                player = try engine?.makeAdvancedPlayer(with: pattern)
                 try player?.start(atTime: 0)
                 player?.loopEnabled = true
+                hapticsBeat = true
             }
+            
         } catch {
             print("Failed to play pattern \(error.localizedDescription)")
         }
@@ -135,6 +144,7 @@ struct HeartBeat: View {
     func stopBeat() {
         do {
             try player?.stop(atTime: 0)
+            hapticsBeat = false
         } catch {
             print("Error in Stopping Haptics \(error.localizedDescription)")
         }
@@ -174,9 +184,19 @@ struct HeartBeat: View {
         }
     }
     
-    func stopHeart(){
+    func stopHeart() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    func beatFromProfile() {
+        hapticsBeat = true
+        runBeat()
+    }
+    
+    func stopProfileBeat() {
+        hapticsBeat = false
+        stopBeat()
     }
     
 }
